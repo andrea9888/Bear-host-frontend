@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
+]>
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="1366px" height="768px" viewBox="8.969 1573.728 1366 768"
+	 enable-background="new 8.969 1573.728 1366 768" xml:space="preserve">
+<defs>
+</defs>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1191.2432" y1="1148.1597" x2="2883.2061" y2="1148.1597">
+	<stop  offset="0" style="stop-color:#009FE3"/>
+	<stop  offset="0.0042" style="stop-color:#009CE1"/>
+	<stop  offset="0.0479" style="stop-color:#0086C4"/>
+	<stop  offset="0.0957" style="stop-color:#0070AA"/>
+	<stop  offset="0.148" style="stop-color:#005C94"/>
+	<stop  offset="0.2046" style="stop-color:#004C83"/>
+	<stop  offset="0.2668" style="stop-color:#0C3E75"/>
+	<stop  offset="0.3367" style="stop-color:#1E336B"/>
+	<stop  offset="0.4175" style="stop-color:#242C64"/>
+	<stop  offset="0.5162" style="stop-color:#27275F"/>
+	<stop  offset="0.652" style="stop-color:#28245D"/>
+	<stop  offset="1" style="stop-color:#29235C"/>
+</linearGradient>
+<path fill-rule="evenodd" clip-rule="evenodd" fill="url(#SVGID_1_)" d="M1797.372,2022.063
+	C343.653,313.378,1899.677,1083.948,2379.87,274.615C3218.483-1138.829,2999.04,3434.492,1797.372,2022.063z"/>
+<text transform="matrix(1 0 0 1 0 2098.9458)" fill="#FFFFFF" font-family="'Bahnschrift'" font-size="397.375">SIGN IN</text>
+</svg>

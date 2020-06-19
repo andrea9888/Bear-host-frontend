@@ -1,0 +1,12 @@
+@media only screen and (min-width: 768px) {
+    header{
+        background: url(../slike/POZADINASAMED\ \(2\).png);
+    }
+    .logo {
+        width: 371px;
+        height: 478px;
+        position: absolute;
+        top: -150px;
+        left: -100px;
+    }
+}

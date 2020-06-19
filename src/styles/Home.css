@@ -1,0 +1,16 @@
+
+
+header{
+    background: url(../slike/POZADINATELSAMED\ \(1\).png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:100vh;
+    
+}
+.logo{
+    width: 377px;
+    height: 347px;
+    position: absolute;
+    top: -85px;
+    left: -100px;
+}
