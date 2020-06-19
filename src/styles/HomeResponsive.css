@@ -1,6 +1,7 @@
 @media only screen and (min-width: 768px) {
-    header{
+    header {
         background: url(../slike/POZADINASAMED\ \(2\).png);
+        background-size: cover;
     }
     .logo {
         width: 371px;
@@ -8,5 +9,12 @@
         position: absolute;
         top: -150px;
         left: -100px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .logo {
+        top: -123px;
+        left: -26vw;
     }
 }

@@ -1,12 +1,16 @@
-.body{
+.body {
     width: 100%;
     height: 100vh;
-    background-image: url('../slike/POZADINALOGIN.svg');
+    background-image: url('../slike/PNG2.png');
     background-size: 100vw 100vh;
     position: relative;
 }
 
-.text{
+.body * {
+    overflow: hidden;
+}
+
+.text {
     position: absolute;
     width: 40vw;
     height: 40vh;
@@ -15,9 +19,9 @@
     background-size: 100% 100%;
     top: 1vh;
     left: 1vw;
-
 }
-.sign-in{
+
+.sign-in {
     padding-top: 133px;
     padding-left: 149px;
     width: fit-content;
@@ -28,26 +32,26 @@
     color: rgba(255, 255, 255, 0.808);
 }
 
-.form-container{
+.form-container {
     position: absolute;
     width: 489px;
     height: 516px;
-    background-image: url("../slike/LOGIN2.svg");
+    background-image: url("../slike/LOGIN3.png");
     background-repeat: no-repeat;
     background-size: cover;
     right: 16vw;
     top: 8vh;
 }
 
-h2{
+h2 {
     font-weight: 400;
     margin: 0;
     padding-right: 14px;
     color: white;
-    height: 20px;
+    height: fit-content;
 }
 
-.input-shape{
+.input-shape {
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.651);
     width: 206px;
@@ -61,16 +65,34 @@ h2{
     color: white;
 }
 
-.input-shape::placeholder{
+.input-shape::placeholder {
     color: rgba(255, 255, 255, 0.644);
 }
 
-.sign-up{
+.sign-up {
     position: absolute;
-    right: 0;
+    left: 10vw;
+    bottom: 7vw;
+    color: white;
 }
 
-.section-bellow{
+.sign-up>p {
+    margin-bottom: 10px;
+}
+
+.sign-up>button {
+    color: white;
+    width: 189px;
+    height: 40px;
+    line-height: 40px;
+    background-color: transparent;
+    font-size: 21px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.section-bellow {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -81,18 +103,17 @@ h2{
     padding-left: 24px;
 }
 
-
-.section-checkbox{
+.section-checkbox {
     display: grid;
     grid-template-columns: 1fr 5fr;
     align-items: center;
 }
 
-.section-checkbox label{
+.section-checkbox label {
     padding-left: 1px;
 }
 
-.signin-btn{
+.signin-btn {
     width: 77px;
     height: 28px;
     background-color: black;
@@ -102,13 +123,13 @@ h2{
     margin-top: 15px;
 }
 
-.keep-checkbtn{
+.keep-checkbtn {
     width: 13px;
     height: 13px;
     background-color: transparent;
     cursor: pointer;
     background: rgba(255, 255, 255, 0);
-    color:black;
+    color: black;
     appearance: none;
     border: 1px solid rgba(0, 0, 0, 0.541);
     outline: none;
@@ -120,10 +141,81 @@ h2{
     background-size: 100% 100%;
 }
 
-.keep-label{
+.keep-label {
     cursor: pointer;
 }
 
-button{
+button {
     outline: none;
+}
+
+.error-singin {
+    margin-top: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px #009fe3 inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+}
+
+@media screen and (max-width: 950px) {
+    .text {
+        height: 27vh;
+    }
+    .sign-up {
+        left: 64vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .text {
+        display: none;
+    }
+    .body {
+        background-image: url('../slike/POZADINATELLOGIN.png');
+    }
+    .form-container {
+        position: absolute;
+        width: 64vw;
+        height: 68vw;
+        right: 22vw;
+        top: 8vh;
+    }
+    .sign-in {
+        padding-top: 18vw;
+        padding-left: 18vw;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .form-container {
+        width: 90vw;
+        height: 90vw;
+        right: 7vw;
+        top: 3vh;
+    }
+    .sign-in {
+        padding-top: 23vw;
+        padding-left: 27vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .form-container {
+        display: none;
+    }
+    .sign-in {
+        padding-top: 23vw;
+        padding-left: 27vw;
+    }
 }

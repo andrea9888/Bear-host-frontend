@@ -1,33 +1,53 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import '../styles/Login.css';
-export const Login = () => {
+import SignIn from "./login_forms/SignIn.js";
+import SignUp from "./login_forms/SignUp.js";
 
-  function handleSubmit(event) {
-    console.log(event);
+class LoginClass extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+    this.state = {
+      component: true,
+      btnClass: "sign-up"
+    };
   }
-  return (
-    <div className="body">
-    <div className="text">
-    </div>
-    <div className="form-container">
-    <form onSubmit={handleSubmit} className="sign-in">
-      <h2>SIGN IN</h2>
-      <input type="text" placeholder="Username" className="input-shape"/>
-      <input type="password" placeholder="Password" className="input-shape"/>
-      <div className="section-bellow">
-        <div className="section-checkbox">
-        <input type="checkbox" name="keep" id="keep" className="keep-checkbtn"/>
-        <label htmlFor="keep" className="keep-label">Keep me logged in</label>
-        </div>
-        <a href="#">Forgot Password?</a>
+
+  toggleComponent= () =>{
+    this.setState({component: false})
+    this.setState({btnClass: "hidden"})
+
+  }
+
+  componentWillUnmount(){
+    this.props.updatePageStatus();
+  }
+
+  componentWillMount(){
+    this.props.hideBRouter();
+  }
+
+  render(){
+    return (
+      <div className="body">
+      <div className="text">
       </div>
-      <button type="submit" className="signin-btn" >SIGN IN</button>
-    </form>
-    </div>
-    <div className="sign-up">
-      <p>DON'T HAVE AN ACCOUNT?</p>
-      <button>SIGN UP</button>
-    </div>
-    </div>
-  );
+      <div className="form-container">
+      {this.state.component?<SignIn updateLogStatus={this.props.updateLogStatus} history={this.props.history}/>:<SignUp updateLogStatus={this.props.updateLogStatus} history={this.props.history}/>}     
+      </div>
+      <div className={this.state.btnClass}>
+        <p>NEMATE NALOG?</p>
+        <button onClick={this.toggleComponent}>REGISTRUJ SE</button>
+      </div>
+      </div>
+    );
+  }
 };
+
+/*
+{this.state.component?<SignIn updateLogStatus={this.props.updateLogStatus} history={this.props.history}/>:<SignUp updateLogStatus={this.props.updateLogStatus} history={this.props.history}/>}
+*/
+
+const Login = withRouter(LoginClass);
+export default Login;

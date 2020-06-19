@@ -1,13 +1,10 @@
-
-
-header{
+header {
     background: url(../slike/POZADINATELSAMED\ \(1\).png);
     background-size: cover;
-    background-repeat: no-repeat;
-    height:100vh;
-    
+    height: 100vh;
 }
-.logo{
+
+.logo {
     width: 377px;
     height: 347px;
     position: absolute;
