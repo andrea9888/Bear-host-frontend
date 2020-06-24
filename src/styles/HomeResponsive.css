@@ -1,8 +1,10 @@
 @media only screen and (min-width: 768px) {
-    header {
+    .bearhost {
         background: url(../slike/POZADINASAMED\ \(2\).png);
         background-size: cover;
+        height:115vh;
     }
+    
     .logo {
         width: 371px;
         height: 478px;
@@ -10,7 +12,40 @@
         top: -150px;
         left: -100px;
     }
+    
+    .carousel.carousel-slider{
+        height:80vh;
+    }
+    .product-slider-desc{
+        font-size:2vw;
+        width:70vw;
+        margin: auto;
+    }
+    
+    .carousel .control-dots .dot {
+        width:14px;
+        height:14px;
+        background:blue;
+        outline:none;
+    }
+    
+
+    
 }
+@media screen and (min-width:1000px){
+    .carousel.carousel-slider {
+        height:70vh;
+    }
+}
+@media screen and (min-width:1200px){
+    .carousel.carousel-slider {
+        height:80vh;
+    }
+    h1{
+        font-size: 3.625rem;
+    }
+}
+
 
 @media screen and (max-width: 380px) {
     .logo {

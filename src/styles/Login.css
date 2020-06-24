@@ -6,9 +6,7 @@
     position: relative;
 }
 
-.body * {
-    overflow: hidden;
-}
+
 
 .text {
     position: absolute;

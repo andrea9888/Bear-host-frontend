@@ -23,7 +23,7 @@ class PackagesTel extends Component {
                 <ul className={drpNav}>
                   <li><Link to="/vps">VPS</Link></li>
                   <li><Link to="/shared">Shared hosting</Link></li>
-                  <li><Link to="/dedicated">Dedicated</Link></li>
+                  <li><Link to="/dedicated">Dedicated Servers</Link></li>
                   <li><Link to="/mecloud">ME Cloud Servis</Link></li>
                 </ul>
               </div>

@@ -23,9 +23,9 @@ class PackagesDes extends Component {
               <div className={drpCont}>
                 <ul className={drpNav}>
                   <li><Link to="/vps">VPS</Link></li>
-                  <li><Link to="/shared">Shared hosting</Link></li>
-                  <li><Link to="/dedicated">Dedicated</Link></li>
-                  <li><Link to="/mecloud">ME Cloud Servis</Link></li>
+                  <li><Link to="/shared">SHARED HOSTING</Link></li>
+                  <li><Link to="/dedicated">DEDICATED SERVERS</Link></li>
+                  <li><Link to="/mecloud">ME CLOUD SERVIS</Link></li>
                 </ul>
               </div>
             </li>
