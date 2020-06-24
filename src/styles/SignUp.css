@@ -1,0 +1,92 @@
+.modal{
+    width: fit-content;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 673px;
+}
+
+.modal::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-image: url("../slike/login-form-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotate(90deg);
+}
+
+.sign-up{
+    padding-left: 69px;
+    padding-top: 132px;
+}
+
+.form-holder{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    justify-items: center;
+    width: fit-content;
+}
+
+.close-modal{
+    outline: none;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    position: absolute;
+    top: 140px;
+    left: -6vw;
+}
+
+.close-modal-container{
+    width: 100%;
+}
+
+.input-shape-sign-up{
+    margin-top: 1vw;
+}
+
+.sign-up-section-2{
+    padding-top: 87px;
+}
+
+.signup-btn{
+    width: 116px;
+    height: 45px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 21px;
+    font-size: 17px;
+}
+
+.signup-btns{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 4px;
+    justify-items: center;
+    padding-top: 64px;
+    padding-right: 58px;
+}
+.signup-google{
+    background-image: url("../slike/google.png");
+    background-repeat: no-repeat;
+    background-size: 42px;
+    border: none;
+    border-radius: 21px;
+    width: 42px !important;
+    height: 42px;
+}
+
+@media screen and (min-width: 1126px){
+    .close-modal{
+        left: -3vw;
+    }    
+}
+
