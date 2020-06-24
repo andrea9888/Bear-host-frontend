@@ -1,0 +1,61 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+.bearhost {
+    background: url(../slike/POZADINATELSAMED\ \(1\).png);
+    background-size: cover;
+    height: 100vh;
+}
+section .section-header{
+    background: transparent;
+}
+.logo {
+    width: 377px;
+    height: 347px;
+    position: absolute;
+    top: -85px;
+    left: -100px;
+}
+h1{
+    color:white;
+}
+.carousel.carousel-slider {
+    position: absolute;
+    margin: 0;
+    margin-top:70px;
+    overflow: hidden;
+    top: 150px;
+    height:60vh;
+    background: transparent;
+}
+.text-gradient {
+    color: #fc3;
+    
+}
+.product-slider-desc{
+    width:70vw;
+    margin:auto;
+}
+
+
+.carousel .slide {
+    background: transparent;
+}
+.carousel .slide img{
+    width:50%;
+    
+    
+}
+.slider{
+    color:white;
+}
+.carousel.carousel-slider .control-arrow{
+    color:white;
+}
+.carousel.carousel-slider .control-arrow:hover{
+    background-color: transparent;
+    transform: scale(2);
+}
+.carousel-status{
+    display:none;
+}
