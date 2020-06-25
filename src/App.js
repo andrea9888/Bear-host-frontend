@@ -11,6 +11,8 @@ import { Shared } from "./components/Shared";
 import { Dedicated } from "./components/Dedicated";
 import { MeCloud } from "./components/MeCloud.js";
 import { About } from "./components/About";
+import PackagesTel from "./components/NavbarPackagesTel";
+import PackagesDes from "./components/NavbarPackagesDes";
 import { auth } from "./auth_and_private/authService";
 import { Company } from "./components/Company";
 class App extends React.Component {
@@ -78,7 +80,7 @@ class App extends React.Component {
                 <ul className={navGen}>
                   <li className="list-mem"><Link to="/">Početna</Link></li>
                   
-                  
+                  {this.state.isMobile?<PackagesTel pack={this.state.isMobile}></PackagesTel>:<PackagesDes pack={this.state.isMobile}></PackagesDes>}
                   <li className="list-mem"><Link to="/company">Kompanija</Link></li>
                   <li className="list-mem"><Link to="/about">O nama</Link></li>
                   <li className="list-mem"><Link to="/shop">Korpa</Link></li>
