@@ -1,4 +1,16 @@
 import React from 'react';
-export const MeCloud = () => {
-  return <h1>ME CLOUD</h1>;
-};
+
+class MeCloud extends React.Component{
+
+  render(){
+    return(
+      
+      <div>
+
+      </div>
+
+    );
+  }
+}
+
+export default MeCloud;
