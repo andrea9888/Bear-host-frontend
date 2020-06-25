@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 *{
-    font-family: 'Open Sans', sans-serif!important;
+    font-family:  'Roboto Condensed', sans-serif!important;
 }
 .login,
 .logout {
