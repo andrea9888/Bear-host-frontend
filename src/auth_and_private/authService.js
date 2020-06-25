@@ -1,12 +1,12 @@
 import apiCall from "../services/apiCall";
 class AuthService {
-    async getAuthStatus() {
+    getAuthStatus() {
         let token = localStorage.getItem("bear-host-refresh");
-        if (!!token) {
+        /*if (!!token) {
             await this.getAccessToken(token)
-        }
+        }*/
 
-        return !!token ? true : false;
+        return false;
     }
 
     async getAccessToken(token){
