@@ -11,22 +11,27 @@ import { Shared } from "./components/Shared";
 import { Dedicated } from "./components/Dedicated";
 import { MeCloud } from "./components/MeCloud.js";
 import { About } from "./components/About";
-import PackagesTel from "./components/NavbarPackagesTel";
-import PackagesDes from "./components/NavbarPackagesDes";
 import { auth } from "./auth_and_private/authService";
 import { Company } from "./components/Company";
 class App extends React.Component {
   state = {
     logged: auth.getAuthStatus(),
     isMobile: window.innerWidth < 800,
-    loginPage: ""
+    loginPage: "",
+    keepMeLoged: false
+
   };
+
+  keepMeLogedUpdate = (keepMeLoged) => {
+    this.setState({keepMeLoged})
+  }
+
   toggleLog = (logged) => {
     this.setState({ logged });
     if (logged) {
       this.setState({ logged });
     } else {
-      auth.logout();
+      auth.logout(this.state.keepMeLoged);
     }
   };
 
@@ -74,7 +79,6 @@ class App extends React.Component {
                   <li className="list-mem"><Link to="/">Početna</Link></li>
                   
                   
-                  {this.state.isMobile?<PackagesTel pack={this.state.isMobile}></PackagesTel>:<PackagesDes pack={this.state.isMobile}></PackagesDes>}
                   <li className="list-mem"><Link to="/company">Kompanija</Link></li>
                   <li className="list-mem"><Link to="/about">O nama</Link></li>
                   <li className="list-mem"><Link to="/shop">Korpa</Link></li>
@@ -99,7 +103,7 @@ class App extends React.Component {
             <Route path="/about" component={About}></Route>
             <Route
               path="/login"
-              render={() => <Login updateLogStatus={this.toggleLog} updatePageStatus={this.togglePageStatus}  hideBRouter={this.hideNav}></Login>}
+              render={() => <Login updateLogStatus={this.toggleLog} keepMeLogedUpdate={this.keepMeLogedUpdate} updatePageStatus={this.togglePageStatus}  hideBRouter={this.hideNav}></Login>}
             ></Route>
             <PrivateRoute component={Shop} path="/shop"></PrivateRoute>
             <Route path="/shop" component={Shop}></Route>

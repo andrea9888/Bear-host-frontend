@@ -12,11 +12,12 @@
     "react-dom": "^16.13.1",
     "react-responsive-carousel": "^3.2.8",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "uikit": "^3.5.4"
+    "react-scripts": "^3.4.1",
+    "uikit": "^3.5.4",
+    "uikit-react": "^3.0.20"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --host 0.0.0.0",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

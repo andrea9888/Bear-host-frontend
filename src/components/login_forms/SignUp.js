@@ -8,48 +8,86 @@ class SignUp extends React.Component {
       this.props = props;
       //this.handleChange = this.handleChange.bind(this);
       this.state = {
-        usernameHolderStr: "",
-        passHolderStr: "",
-        wrongUsername: false,
-        wrongPass: false
+        email: "",
+        username: "",
+        name: "",
+        lastName: "",
+        password: "",
+        passwordRep: ""
       };
     }
     
     
-    usernameHolder = (usernameHolderStr) => {
-    this.setState({ usernameHolderStr });
+    holder = (name, value) => {
+      this.setState({ [name]:  value});
     }
-    passHolder = (passHolderStr) => {
-      this.setState({ passHolderStr });
-      }
   
+  
+    handleUsername = (username) => {
+      if(username.length >= 3){
+          return true;
+      }
+      
+      this.props.setNotify("Prekratko korisničko ime!");
+      return false;
+    }
+    
     handlePass = (pass) => {
       if(pass.match(/[a-z]/ ) && pass.match(/[A-Z]/) && pass.match(/[0-9]/) && pass.length >= 8){
+        if(this.state.password === this.state.passwordRep){
+          return true;
+        }
+        this.props.setNotify("Lozinke se ne poklapaju!");
+        return false;
+      }
+      this.props.setNotify("Pogrešno unijeta lozinka!");
+      return false;
+      
+    }
+
+    handleEmail = (email) => {
+      if(email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
           return true;
       }
-      this.setState({ wrongPass: true});
+      this.props.setNotify("Pogrešno unijet email!");
       return false;
-  
+      
     }
-  
-    handleUsername = () => {
-      if(this.state.usernameHolderStr.length >= 3){
+
+    handleName = (nameF) => {
+      if(nameF.length > 0){
           return true;
       }
-      this.setState({ wrongUsername: true});
+      this.props.setNotify("Morate unijeti svoje ime!");
       return false;
+      
     }
-  
+
+    handleLastName = (name) => {
+      if(name.length > 0){
+          return true;
+      }
+      this.props.setNotify("Morate unijeti svoje prezime!");
+
+      return false;
+      
+    }
+
+    resetState = () =>{
+        this.setState({ username: ""});
+        this.setState({ password: ""});
+        this.setState({ name: ""});
+        this.setState({ lastName: ""});
+        this.setState({ email: ""});
+        this.setState({ passwordRep: ""});
+    }
+
     async loginCall(data){
-      var res = await auth.login(data);
-      if(res === "error"){
-        this.setState({ usernameHolderStr: ""});
-        this.setState({ passHolderStr: ""});
+      var res = await auth.signup(data);
+      if(res === "uspjesno"){
+        this.props.setNotify("Uspješna registracija! Potvrdite nalog.");
       }else{
-        localStorage.setItem('bear-host-access', res.accesToken);      
-        localStorage.setItem('bear-host-refresh', res.refreshToken);
-        this.props.updateLogStatus(true);
-        this.props.history.push("/");
+        this.props.setNotify(res);
       }
   
     }
@@ -57,33 +95,51 @@ class SignUp extends React.Component {
     handleSubmit = (e) => {
       e.preventDefault();
       var data = {
-        'username': this.state.usernameHolderStr,
-        'password': this.state.passHolderStr
-      }
-      if(this.handleUsername(data.username) && this.handlePass(data.password)){
+        'username': this.state.username,
+        'password': this.state.password,
+        'firstname': this.state.name,
+        'lastname': this.state.lastName,
+        'email': this.state.email
+      }/*
+      this.handleName(data.firstname) && this.handleLastName(data.lastname) && this.handleEmail(data.email) && this.handleUsername(data.username) && this.handlePass(data.password)
+      */
+      if(true){
         this.loginCall(data); 
-      }else{
-        console.log("nesto je pogresno");
       }
-  
+      
   
     }
+
+    closeModal = () =>{
+      this.props.setModal();
+    }
+
     render(){
         return(
-            <form onSubmit={this.handleSubmit} className="sign-in">
-                <h2>SIGN UP</h2>
-                <input type="text" placeholder="Username" className="input-shape" name="username" onChange={e =>  this.usernameHolder(e.target.value)} value={this.state.usernameHolderStr}/>
-                <input type="password" placeholder="Password" className="input-shape" name="password" onChange={e =>  this.passHolder(e.target.value)} value={this.state.passHolderStr}/>
-                <div className="section-bellow">
-                <div className="section-checkbox">
-                <input type="checkbox" name="keep" id="keep" className="keep-checkbtn"/>
-                <label htmlFor="keep" className="keep-label">Keep me logged in</label>
+          <div className="modal">
+            <div className="close-modal-container">
+                  <button className="close-modal" type="button" onClick={this.closeModal}>X</button>
+            </div>
+            <form onSubmit={this.handleSubmit} className="sign-up">
+              <div className="form-holder">
+              <div className="sign-up-section-1">
+                <input type="text" placeholder="Ime" className="input-shape input-shape-sign-up" name="name" onChange={e =>  this.holder(e.target.name, e.target.value)} value={this.state.name}/>
+                <input type="text" placeholder="Prezime" className="input-shape input-shape-sign-up" name="lastName" onChange={e =>  this.holder(e.target.name, e.target.value)} value={this.state.lastName}/>
+                <input type="email" placeholder="Email" className="input-shape input-shape-sign-up" name="email" onChange={e =>  this.holder(e.target.name, e.target.value)} value={this.state.email}/>
                 </div>
-                <a href="" /*AwdaAAAAAAAAAAAA*/>Forgot Password?</a>
+                <div className="sign-up-section-2">
+                <input type="text" placeholder="Korisničko ime" className="input-shape input-shape-sign-up" name="username" onChange={e =>  this.holder(e.target.name, e.target.value)} value={this.state.username}/>
+                <input type="password" placeholder="Lozinka" className="input-shape input-shape-sign-up" name="password" onChange={e =>  this.holder(e.target.name,e.target.value)} value={this.state.password}/>
+                <input type="password" placeholder="Ponovi lozinku" className="input-shape input-shape-sign-up" name="passwordRep" onChange={e =>  this.holder(e.target.name,e.target.value)} value={this.state.passwordRep}/>    
                 </div>
-                <button type="submit" className="signin-btn" >SIGN IN</button>
+                </div>
+                <div className="signup-btns">
+                  <button type="submit" className="signup-btn" >Registruj se</button>
+                  {/* <div>ILI</div>
+                  <button type="button" className="signup-google"></button> */}
+                </div>
             </form>
-
+          </div>
 
 
         );

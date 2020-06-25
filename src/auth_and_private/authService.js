@@ -1,10 +1,19 @@
 import apiCall from "../services/apiCall";
 class AuthService {
-    getAuthStatus() {
-        let token = localStorage.getItem("bear-host-access");
-        if (!!token) this.setJwt(token)
+    async getAuthStatus() {
+        let token = localStorage.getItem("bear-host-refresh");
+        if (!!token) {
+            await this.getAccessToken(token)
+        }
+
         return !!token ? true : false;
     }
+
+    async getAccessToken(token){
+        //pass
+        //setJwt(token)
+    }
+
     setJwt(token) {
         apiCall.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
@@ -19,8 +28,23 @@ class AuthService {
         });
         return result;
     }
-    logout() {
+
+    async signup(dataSent) {
+        
+        try {
+            let res = await apiCall.post('/user/signup', dataSent)
+        
+            return "uspjesno";
+          } catch (error) {
+            return error.response.data.error; 
+          }
+    }
+
+    logout(bool = false) {
         localStorage.removeItem("bear-host-access");
+        if(!bool){
+            localStorage.removeItem("bear-host-refresh");
+        }
         window.location.href = "/login";
     }
 }
