@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import '../../styles/enterprise.css';
 
 import mapa from '../../slike/mapa.svg';
-import {ReactComponent as Sec1} from '../../slike/1.svg';
-import {ReactComponent as Sec2} from '../../slike/2.1.svg';
-import sec3 from '../../slike/4.svg';
+import sec1 from '../../slike/K1.svg';
+import sec2 from '../../slike/K2.svg';
+import sec3 from '../../slike/K3.svg';
 
 class Enterprise extends Component {
     state = {  }
@@ -21,7 +21,7 @@ class Enterprise extends Component {
                     <div className="flex">
                         <div className="flex-33">
                             <div className="enterprise">
-                                <Sec1 className="fas fa-gradient fa-left"/>
+                                <img className="fas fa-gradient fa-left" src={sec1}/>
                                 <h3>High <br/>Performance</h3>
                             </div>
                             <p>We operate one of the most advanced server networks in the world, complete with Anycast support and extensive DDoS protection.</p>
@@ -38,7 +38,7 @@ class Enterprise extends Component {
                         </div>
                         <div className="flex-33">
                             <div className="enterprise">
-                                <Sec2 className="fas fa-gradient fa-left"/>
+                                <img className="fas fa-gradient fa-left" src={sec2}/>
                                 <h3>Fully <br/>Redundant</h3>
                             </div>
                             <p>Our cloud platform offers a 99.99% uptime guarantee with full hardware and network redundancy to keep your services online.</p>
