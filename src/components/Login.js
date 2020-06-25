@@ -60,7 +60,7 @@ class LoginClass extends React.Component {
 
   render(){
     return (
-      <div className="body">
+      <div className="body-login">
       <div className="text">
       </div>
       <div className="form-container">
