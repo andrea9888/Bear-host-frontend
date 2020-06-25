@@ -49,7 +49,8 @@ class Enterprise extends Component {
                         <ul>
                     
                             <li className="podgorica"><a href="network.html"><div className="map-label-top">Podgorica <small>Crna Gora</small></div></a></li>
-                            
+                            <li className="pariz"><a href="network.html"><div className="map-label-top">Pariz <small>Francuska</small></div></a></li>
+                            <li className="amsterdam"><a href="network.html"><div className="map-label-top">Amsterdam <small>Holandija</small></div></a></li>                           
                         </ul>
                         <img width="1276" height="630" src={mapa}/>
                             

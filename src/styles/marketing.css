@@ -1,0 +1,13 @@
+.marketing{
+    margin: 30px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    column-gap: 5%;
+}
+.uk-card{
+    
+    height:350px;
+}
+.text-card{
+    color:black;
+}
