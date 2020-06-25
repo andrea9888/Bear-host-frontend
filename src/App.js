@@ -86,7 +86,7 @@ class App extends React.Component {
                   <li className="list-mem"><Link to="/shop">Korpa</Link></li>
                   
                     <div className="login-button">
-                      {!this.state.logged?<button className="uk-button uk-button-default login"><Link to="/login" className="white">Prijavi se</Link></button>:<button className="uk-button uk-button-default logout white" onClick={()=>this.toggleLog(false)}>Odjavi se</button>}
+                      {this.state.logged?<button className="uk-button uk-button-default login"><Link to="/login" className="white">Prijavi se</Link></button>:<button className="uk-button uk-button-default logout white" onClick={()=>this.toggleLog(false)}>Odjavi se</button>}
                     </div>
                   
 
