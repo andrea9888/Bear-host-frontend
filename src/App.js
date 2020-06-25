@@ -15,12 +15,16 @@ import PackagesTel from "./components/NavbarPackagesTel";
 import PackagesDes from "./components/NavbarPackagesDes";
 import { auth } from "./auth_and_private/authService";
 import { Company } from "./components/Company";
+import apiCall from "./services/apiCall";
+
 class App extends React.Component {
   state = {
     logged: auth.getAuthStatus(),
     isMobile: window.innerWidth < 800,
     loginPage: "",
-    keepMeLoged: false
+    keepMeLoged: false,
+    products: []
+
 
   };
 
@@ -43,6 +47,9 @@ class App extends React.Component {
         isMobile: window.innerWidth < 800,
       })
     );
+    if (this.state.products.length === 0){
+      this.readProducts();
+    }
   }
 
   hideNav = () =>{
@@ -52,6 +59,14 @@ class App extends React.Component {
   togglePageStatus = () => {
     this.setState({loginPage: ""})    
   }
+  async readProducts() {
+    
+      const response = await apiCall.get('/products/marketing');
+      const products = response.data;
+      console.log(products);
+      this.setState({products}) ;
+    
+}
 
   render() {
     let mobile = this.state.isMobile;
@@ -96,7 +111,7 @@ class App extends React.Component {
       </div>
     </nav> 
           <Switch>
-            <Route exact path="(/|/home)" component={Home}></Route>
+            <Route exact path="(/|/home)" render={()=><Home products={this.state.products}></Home>}></Route>
             <Route path="/vps" component={Vps}></Route>
             <Route path="/shared" component={Shared}></Route>
             <Route path="/dedicated" component={Dedicated}></Route>
