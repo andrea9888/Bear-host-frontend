@@ -36,6 +36,8 @@
 }
 .uk-card-title{
     color:#0099cc!important;
+    height:60px;
+    
     
 }
 .icon-marketing{
@@ -65,7 +67,7 @@
 }
 @media screen and (min-width:400px){
     .uk-card{
-        height:300px;
+        height:250px;
     }
 }
 @media screen and (min-width:678px){
@@ -77,13 +79,13 @@
     }
     .uk-card{
         
-        height:350px;
+        height:300px;
     }
 }
 @media screen and (min-width:800px){
     .uk-card{
         
-        height:300px;
+        height:250px;
     }
 }
 @media screen and (min-width:1000px){
@@ -102,7 +104,7 @@
     }
     .uk-card{
         
-        height:400px;
+        height:350px;
         
     }
 

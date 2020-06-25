@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from '../slike/logo.svg';
 import Slider from './components-home/slider';
 import Marketing from './components-home/marketing';
+import Komentari from './components-home/Komentari';
 import Enterprise from './components-home/enterprise';
 import '../styles/Home.css';
 import '../styles/HomeResponsive.css';
@@ -21,6 +22,7 @@ export const Home = (props) => {
       </header>
       <Enterprise></Enterprise>
       <Marketing products={props.products}></Marketing>
+      <Komentari></Komentari>
       </div>
   );
   

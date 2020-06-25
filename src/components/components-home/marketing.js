@@ -24,7 +24,7 @@ class Marketing extends Component {
                 <div className="marketing-card">
                     <div className="uk-card uk-card-default uk-card-hover uk-card-body">
                         <h3 className="uk-card-title">{elem.title}</h3>
-                        <p className="text-card">{elem.description2}</p>
+                        <p className="text-card">{`${elem.description2.slice(0,100)} ...`}</p>
                         <button className="uk-button uk-button-text">Saznaj više &rarr;</button>
                     </div>
                 </div>
