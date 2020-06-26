@@ -6,6 +6,7 @@ import Slider from './components-home/slider';
 import Marketing from './components-home/marketing';
 import Komentari from './components-home/Komentari';
 import Enterprise from './components-home/enterprise';
+import Footer from './Footer';
 import '../styles/Home.css';
 import '../styles/HomeResponsive.css';
 
@@ -23,6 +24,7 @@ export const Home = (props) => {
       <Enterprise></Enterprise>
       <Marketing products={props.products}></Marketing>
       <Komentari></Komentari>
+      <Footer></Footer>
       </div>
   );
   
