@@ -55,7 +55,7 @@
 }
 
 @media screen and (max-width: 768px){
-    body {
+    .body {
         background-image: url('../slike/POZADINATELLOGIN.png');
         background-size: 100vw 100vh;
     }

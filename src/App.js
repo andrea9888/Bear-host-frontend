@@ -23,7 +23,8 @@ class App extends React.Component {
     isMobile: window.innerWidth < 800,
     loginPage: "",
     keepMeLoged: false,
-    products: []
+    products: [],
+    packets: {}
 
 
   };
@@ -49,6 +50,7 @@ class App extends React.Component {
     );
     if (this.state.products.length === 0){
       this.readProducts();
+      this.readPackets();
     }
   }
 
@@ -66,7 +68,31 @@ class App extends React.Component {
       console.log(products);
       this.setState({products}) ;
     
-}
+  }
+
+  async readPackets(){
+    const response = await apiCall.get('/products/packets');
+    var packets = {};
+    response.data.forEach(element => {
+        packets[element.packetname] = element.packetid;
+    });
+    this.setState({ packets });
+  }
+
+  objectForProducts(id){
+    var objToSend = {};
+    this.state.products.forEach(element => {
+        if(id === element.packetid){
+            objToSend.title = element.title;
+            objToSend.description1 = element.description1;
+            objToSend.minprice = element.minprice;
+            objToSend.pricedescription = element.pricedescription;
+            objToSend.packetid = element.packetid;
+            return objToSend;
+        }
+    });
+    return objToSend;
+  }
 
   render() {
     let mobile = this.state.isMobile;
@@ -95,7 +121,7 @@ class App extends React.Component {
                 <ul className={navGen}>
                   <li className="list-mem"><Link to="/">Početna</Link></li>
                   
-                  {this.state.isMobile?<PackagesTel pack={this.state.isMobile}></PackagesTel>:<PackagesDes pack={this.state.isMobile}></PackagesDes>}
+                  {this.state.isMobile?<PackagesTel pack={this.state.isMobile}></PackagesTel>:<PackagesDes pack={this.state.isMobile} ></PackagesDes>}
                   <li className="list-mem"><Link to="/company">Kompanija</Link></li>
                   <li className="list-mem"><Link to="/about">O nama</Link></li>
                   <li className="list-mem"><Link to="/shop">Korpa</Link></li>
@@ -112,10 +138,10 @@ class App extends React.Component {
     </nav> 
           <Switch>
             <Route exact path="(/|/home)" render={()=><Home products={this.state.products}></Home>}></Route>
-            <Route path="/vps" component={Vps}></Route>
-            <Route path="/shared" component={Shared}></Route>
-            <Route path="/dedicated" component={Dedicated}></Route>
-            <Route path="/mecloud" component={MeCloud}></Route>
+            <Route path="/vps" render={()=><Vps products={this.objectForProducts(this.state.packets["VPS"])}></Vps>}></Route>
+            <Route path="/shared" render={()=><Shared products={this.objectForProducts(this.state.packets["Shared"])}></Shared>}></Route>
+            <Route path="/dedicated" render={()=><Dedicated products={this.objectForProducts(this.state.packets["Dedicated"])}></Dedicated>}></Route>
+            <Route path="/mecloud" render={()=><MeCloud products={this.objectForProducts(this.state.packets["Cloud"])}></MeCloud>}></Route>
             <Route path="/company" component={Company}></Route>
             <Route path="/about" component={About}></Route>
             <Route

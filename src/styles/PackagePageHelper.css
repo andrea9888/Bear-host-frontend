@@ -1,0 +1,179 @@
+/* .body-pro{
+    background-image: url('../slike/POZADINA2.png');
+    background-repeat: no-repeat;
+    background-size: cover; 
+} */
+ 
+.section-footer-pro{
+    height: 300px;
+}
+
+
+.section-footer-pro>p{
+    padding: 70px 196px;
+    color: #174f8d;
+    text-align: center;
+}
+
+.hr-pro{
+    border-top: 1px solid white;
+    width: 100%;
+}
+
+.section-primary-pro{
+    background-image: url('../slike/POZADINASAMED\ \(2\).png');
+    background-repeat: no-repeat;
+    background-size: 100vw 115vh;
+} 
+ 
+.section-secondary-pro{
+    display: grid;
+    grid-gap: 20px;
+    margin-top: 54px;
+} 
+
+.section-secondary-usual-grid{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.section-secondary-dedicated-grid{
+    grid-template-columns: 1fr 1fr;
+    padding: 0 7vw;
+    grid-gap: 7vw;
+}
+
+.container-background{
+    padding-top: 150px;
+}
+
+.container-pro{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.box-pro{
+    padding: 13px 0;
+    position: relative;
+    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.46);
+    border-radius: 12px;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    height: fit-content;
+    background: linear-gradient(225deg, #008ed2, #27255e);
+    color: white !important;
+
+}
+
+.box-content-pro{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 2fr 3fr 0.11fr;
+    position: relative;
+}
+
+.hr-pro-bottom{
+    position: absolute;
+    bottom: 10px;
+}
+
+.box-pro:hover{
+    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.76);
+    transition: .2s;
+}
+
+
+
+
+.list-pro{
+    font-size: 20px;
+    padding: 0;
+    line-height: 30px;
+}
+
+.price-pro{
+    font-size: 22px;
+    margin: 0;
+    padding-top: 10px;
+}
+
+.box-header-pro{
+    margin-bottom: 0;
+    font-size: 32px;
+    color: white;
+    font-weight: 600;
+}
+
+.hr-pro-up{
+    position: absolute;
+    top: 0;
+    border-top: 1px solid #ffffff;
+    width: 100%;
+    height: 1px;
+    left: 0;
+    box-sizing: border-box;
+}
+
+.to-cart-btn{
+    border: none;
+    font-size: 16px;
+    border-radius: 8px;
+    height: 53px;
+    margin: auto;
+    width: 134px;
+    background: linear-gradient(90deg, #f93, #fc3);
+    color: white;
+}
+
+@media screen and (max-width: 768px){
+    
+.body-pro{
+    background-image: url('../slike/POZADINATELLOGIN.png');
+    background-size: 100vw 318px;
+    background-repeat: no-repeat;
+}
+
+    .logo-pro{
+        width: 300px;
+        height: 256px;
+        left: -85px;
+    }
+
+    .section-secondary-pro{
+        grid-template-columns: 1fr;
+    }
+
+    
+
+    .container-pro {
+        padding-left: 8vw;
+        padding-right: 8vw;
+    }
+
+    .section-primary-pro{
+        background-image: url('../slike/POZADINATELSAMED\ \(1\).png');
+        background-size: 100vw 115vh;
+    } 
+    
+}
+
+@media screen and (max-width: 380px){
+    .logo {
+        top: -84px;
+    }
+        
+    .section-footer-pro>p{
+        padding-top: 40px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+    .logo {
+        width: 35vw;
+        height: 474px;
+        left: -10vw;
+    }
+}
+
