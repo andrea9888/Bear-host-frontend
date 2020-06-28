@@ -118,7 +118,7 @@ class SignUp extends React.Component {
         return(
           <div className="modal">
             <div className="close-modal-container">
-                  <button className="close-modal" type="button" onClick={this.closeModal}>X</button>
+                  <button className="close-modal" type="button" onClick={this.closeModal}><span uk-icon="icon:close"></span></button>
             </div>
             <form onSubmit={this.handleSubmit} className="sign-up">
               <div className="form-holder">
