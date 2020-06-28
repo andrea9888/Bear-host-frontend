@@ -100,15 +100,14 @@ class Shop extends React.Component{
 		</section>
     
     {this.state.cards.length===0?<h2 className="no-saved-products">Nemate sačuvanih proizvoda.</h2>
-    :<section className={`section-secondary-pro ${this.state.gridTemplate}`}>
+    :<><section className={`section-secondary-pro ${this.state.gridTemplate}`}>
         {listCards(this.state.cards, "shop", this.triger, this.setNotify)}
-		</section>}
+		</section>
+    <div className="order"><button className="to-cart-btn order-btn" onClick={this.setModal}>Poruči</button></div></>
+    }
 
     {this.state.notify?this.showNotify():""}  
     
-    <div className="order">
-      <button className="to-cart-btn order-btn" onClick={this.setModal}>Poruči</button>
-    </div>
 
     {this.state.modal?<Order products={this.state.cards} close={this.setModal} notify={this.setNotify} setTriger={this.triger}/>:""}
     {this.state.modal?<div className="mask" onClick={this.setModal}></div>:""}
