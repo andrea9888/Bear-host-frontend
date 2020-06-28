@@ -166,6 +166,7 @@ input:-webkit-autofill {
 }
 
 .mask{
+    z-index: 4;
     position: fixed;
     width: 100vw;
     height: 100vh;
