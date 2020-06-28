@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 
 import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
-import server from '../../slike/server1,1.svg';
+import server1 from '../../slike/server1,1.svg';
+import server2 from '../../slike/server2.1.svg';
+import server3 from '../../slike/server3.1.svg';
+import server4 from '../../slike/server44.svg';
 
 
 class Slider extends Component {
@@ -11,8 +14,22 @@ class Slider extends Component {
      }
 
     createAdd = () =>{
-        return this.props.products.map((elem, index) =>{
         
+        
+        return this.props.products.map((elem, index) =>{
+            let server;
+            if (index===0){
+                server = server1;
+            }
+            else if (index === 1){
+                server = server2;
+            }
+            else if (index === 3){
+                server = server3;
+            }
+            else{
+                server = server4;
+            }
             return (
                 
             <div className='product' key={index}>
@@ -31,7 +48,7 @@ class Slider extends Component {
     render() { 
         return ( 
             <div className="slider">
-            <Carousel autoPlay showThumbs={false}>
+            <Carousel autoPlay="true" showThumbs={false} infiniteLoop="true" useKeyboardArrows="true" swipeable="true" interval="5000">
                 
                     {this.createAdd()}
                 

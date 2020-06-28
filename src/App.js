@@ -10,11 +10,11 @@ import  Vps  from "./components/Vps";
 import  Shared  from "./components/Shared";
 import  Dedicated  from "./components/Dedicated";
 import  MeCloud  from "./components/MeCloud.js";
-import { About } from "./components/About";
 import PackagesTel from "./components/NavbarPackagesTel";
 import PackagesDes from "./components/NavbarPackagesDes";
 import { auth } from "./auth_and_private/authService";
 import { Company } from "./components/Company";
+import Kontakt from './components/Contact';
 import apiCall from "./services/apiCall";
 
 class App extends React.Component {
@@ -126,7 +126,7 @@ class App extends React.Component {
                   
                   {this.state.isMobile?<PackagesTel pack={this.state.isMobile}></PackagesTel>:<PackagesDes pack={this.state.isMobile} ></PackagesDes>}
                   <li className="list-mem"><Link to="/company">Kompanija</Link></li>
-                  <li className="list-mem"><Link to="/about">O nama</Link></li>
+                  <li className="list-mem"><Link to="/contact">Kontakt</Link></li>
                   <li className="list-mem"><Link to="/shop">Korpa</Link></li>
                   
                     <div className="login-button">
@@ -146,7 +146,7 @@ class App extends React.Component {
             <Route path="/dedicated" render={()=><Dedicated products={this.objectForProducts(this.state.packets["Dedicated"])}></Dedicated>}></Route>
             <Route path="/mecloud" render={()=><MeCloud products={this.objectForProducts(this.state.packets["Cloud"])}></MeCloud>}></Route>
             <Route path="/company" component={Company}></Route>
-            <Route path="/about" component={About}></Route>
+            <Route path="/contact" component={Kontakt}></Route>
             <Route
               path="/login"
               render={() => <Login updateLogStatus={this.toggleLog} updatePageStatus={this.togglePageStatus}  hideBRouter={this.hideNav}></Login>}
