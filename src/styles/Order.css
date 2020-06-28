@@ -61,3 +61,9 @@
     text-align: center;
     padding-bottom: 10px;
 }
+
+@media screen and (max-width: 768px){
+    .modal-window{
+        grid-template-columns: 1fr;
+    }
+}
