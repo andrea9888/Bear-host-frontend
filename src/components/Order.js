@@ -1,14 +1,17 @@
 import React from 'react';
+import apiCall from '../services/apiCall.js';
 import '../styles/Order.css';
+import getCartProducts from '../services/getCartProducts.js';
 import { data } from 'jquery';
 
 class Order extends React.Component {
     constructor(props) {
+    window.scrollTo(0, 0);
       super(props);
-      let dataForSending = [];
+      let dataForSending = {};
       let dataForListing = []
         this.props.products.forEach(elem => {
-            dataForSending.push({ [elem.productid]: {1: true, 2: false, 3: false}})
+            dataForSending[elem.productid] = [{1: true, 2: false, 3: false}, {1: elem.price1, 2: elem.price2, 3: elem.price3}]
             dataForListing.push({ productid: elem.productid, title: elem.productname, price1: elem.price1, price2: elem.price2, price3: elem.price3, desc: elem.pricedescription==="year"?"g":"m"})
        }) 
       this.state = {
@@ -17,37 +20,57 @@ class Order extends React.Component {
     };
     }
 
+    orderCall = async () => {
+        let data = {"products": []};
+        let help = {"productid": undefined, "pricepacket": undefined};
+        const dataHelp = this.state.dataToSend;
+        for(const elem in dataHelp){
+            help.productid = parseInt(elem);
+            if(dataHelp[elem][0][1]) help.pricepacket = 1;  
+            if(dataHelp[elem][0][2]) help.pricepacket = 2;  
+            if(dataHelp[elem][0][3]) help.pricepacket = 3;  
+            data.products.push(help);
+        }
+        const res = await apiCall.post('/order', data)
+        
+        if (res.status === 400){
+           this.props.notify("Došlo je do grepške! Pokušajte ponovo!");
+        }else{
+            this.props.notify("Uspješno! Admin će vam odgovoriti mailom.");
+        }
+        getCartProducts.setForce(false);
+        this.props.setTriger("order");
+        this.props.close();
+    }
+
     changeData = (id, num) => {
         let dataHelp = this.state.dataToSend;
-        console.log("state -- ", dataHelp);
-        for(var elem of dataHelp){
-            let key = Object.keys(elem)[0];
-            
-            if(key === id){
-              if(elem[key][num]) break;  
-              elem[key][num] = true;
-              if(num !== 1) elem[key][1] = false;
-              if(num !== 2) elem[key][2] = false;
-              if(num !== 3) elem[key][3] = false;  
+        for(const elem in dataHelp){
+            if(elem === id){
+              if(dataHelp[elem][0][num]) break;  
+              dataHelp[elem][0][num] = true;
+              if(num !== 1) dataHelp[elem][0][1] = false;
+              if(num !== 2) dataHelp[elem][0][2] = false;
+              if(num !== 3) dataHelp[elem][0][3] = false;  
               break;
             }
         }
-        console.log(dataHelp);
         this.setState({ dataToSend: dataHelp });
     }
 
     listProducts = () => {
         return this.state.dataToList.map((elem, index) =>{
             let priceHolder;
+            
             if(elem.desc === "g"){
                 let price1, price2, price3 = "";
                 let radio1, radio2, radio3 = "";
                 if(elem.price3 != null){
                     price1 = <>
                         <strong>1god </strong>
-                        <span className="price-modal">{elem.price3}&euro;/g</span><br/>
+                        <span className="price-modal">{elem.price1}&euro;/g</span><br/>
                     </>
-                    radio1 = <input type="radio" name={elem.productid} value={`1 ${elem.price3}`} checked={this.state.dataToSend[elem.productid[1]]} onChange={(e) => this.changeData(e.target.name, 1)}/>
+                    radio1 = <input type="radio" name={elem.productid} value="1" checked={this.state.dataToSend[elem.productid][0][1]} onChange={(e) => this.changeData(e.target.name, 1)}/>
 
                 }
                 if(elem.price2 != null){
@@ -56,15 +79,14 @@ class Order extends React.Component {
                         <span className="price-modal">{elem.price2}&euro;/g</span><br/>
     
                     </>
-                     radio2 = <input type="radio" name={elem.productid} value={`2 ${elem.price2}`} onChange={(e) => this.changeData(e.target.name, 2)} checked={this.state.dataToSend[elem.productid[2]]}/>
+                     radio2 = <input type="radio" name={elem.productid} value="2" onChange={(e) => this.changeData(e.target.name, 2)} checked={this.state.dataToSend[elem.productid][0][2]}/>
 }
                 if(elem.price1 != null){
                     price3 = <>
                         <strong>3god </strong>
-                        <span className="price-modal">{elem.price1}&euro;/g</span><br/>
-    
+                        <span className="price-modal">{elem.price3}&euro;/g</span><br/>
                     </>
-                    radio3 = <input type="radio" name={elem.productid} value={`3 ${elem.price1}`} onChange={(e) => this.changeData(e.target.name, 3)} checked={this.state.dataToSend[elem.productid[3]]}/>
+                    radio3 = <input type="radio" name={elem.productid} value="3" onChange={(e) => this.changeData(e.target.name, 3)} checked={this.state.dataToSend[elem.productid][0][3]}/>
                 }
 
                 priceHolder =   <p className="price-modal">     
@@ -99,11 +121,30 @@ class Order extends React.Component {
             
     }
 
+    calcPrice(){
+        const dataHelp = this.state.dataToSend;
+        let price = 0;
+        for(const elem in dataHelp){
+            if(dataHelp[elem][0][1] === true) price += dataHelp[elem][1][1];  
+            if(dataHelp[elem][0][2] === true) price += dataHelp[elem][1][2];  
+            if(dataHelp[elem][0][3] === true) price += dataHelp[elem][1][3]; 
+        }
+        return price;
+    }
+
 
     render(){
         return(
             <div className="modal-window">
-                {this.listProducts()}
+                <div className="modal-table">
+                    {this.listProducts()}
+                </div>
+                <div className="btn-and-price">
+                    <div className="modal-text">UKUPNO <strong>{this.calcPrice()}&euro;</strong></div>
+                    <button className="to-cart-btn order-btn-modal" onClick={this.orderCall}>PORUČI</button>
+                </div>
+                <button className="close-modal-table" onClick={this.props.close}><span uk-icon="icon:close"></span></button>
+                
             </div>
         );
     }

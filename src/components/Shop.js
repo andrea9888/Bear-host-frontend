@@ -79,9 +79,8 @@ class Shop extends React.Component{
     }
 
     setModal = () => { 
-      console.log(this.state.modal)
-      this.setState({ modal: !this.state.modal})
-      console.log(this.state.modal);
+      if(this._isMounted) this.setState({ modal: !this.state.modal})
+            
     }
 
   render(){
@@ -111,7 +110,9 @@ class Shop extends React.Component{
       <button className="to-cart-btn order-btn" onClick={this.setModal}>Poruči</button>
     </div>
 
-    {this.state.modal?<Order products={this.state.cards} close={this.setModal}/>:""}
+    {this.state.modal?<Order products={this.state.cards} close={this.setModal} notify={this.setNotify} setTriger={this.triger}/>:""}
+    {this.state.modal?<div className="mask" onClick={this.setModal}></div>:""}
+
     <Footer/>
     </div>
       
