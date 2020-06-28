@@ -8,7 +8,6 @@ class PackagesDes extends Component {
     }
     
     render() { 
-        let bool = this.props.pack ? 'true' : 'false';
          let parent = this.props.pack? 'uk-open' : 'uk-parent';
          let acc = this.props.pack? 'uk-accordion-title':'';
          let drpCont = this.props.pack? 'uk-accordion-content' : 'uk-navbar-dropdown';

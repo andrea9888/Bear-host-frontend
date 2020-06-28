@@ -1,0 +1,23 @@
+.box-modal{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 100%;
+}
+
+.box-header-modal{
+    margin: 0;
+}
+
+.price-modal{
+    margin: 0;
+}
+
+.modal-window{
+    background-color: grey;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px;
+    padding: 50px 0;
+}

@@ -40,13 +40,17 @@ class SignIn extends React.Component {
       var res = await auth.login(data);
       if(res === "error"){
         this.props.setNotify("Pogrešno korisničko ime ili lozinka!");
-        this.setState({ username: ""});
-        this.setState({ password: ""});
-      }else{
+      }else if(res === "potvrda"){
+        this.props.setNotify("Nalog nije potvrdjen!");
+      }
+      else{
         localStorage.setItem('bear-host-access', res.accesToken);      
         localStorage.setItem('bear-host-refresh', res.refreshToken);
         this.props.updateLogStatus(true);
-        this.props.keepMeLogedUpdate(this.state.keep);
+        if(this.state.keep){
+          localStorage.setItem('bear-host-logged', "true");      
+
+        }
         this.props.history.push("/");
       }
   

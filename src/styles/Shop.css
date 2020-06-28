@@ -1,0 +1,30 @@
+.no-saved-products{
+    font-size: 3vw;
+    padding: 100px;
+    color: rgba(0, 0, 0, 0.329);
+}
+.order{
+    height: 4vw;
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.delete-product{
+    background: #ff000099 !important;
+}
+
+.order-btn{
+    width: 19vw;
+    height: 5vw;
+    margin: 0 0 0 50% !important;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #33ff33, #99ff33) !important;
+}
+
+@media screen and (max-width: 768px){
+    .no-saved-products{
+        font-size: 5vw;
+        padding: 50px;
+    }
+}

@@ -20,7 +20,7 @@ class Marketing extends Component {
 
             return (
             <div className="container-marketing" key={index}>  
-                <img className="icon-marketing" src={icon}/>
+                <img className="icon-marketing" src={icon} alt=""/>
                 <div className="marketing-card">
                     <div className="uk-card uk-card-default uk-card-hover uk-card-body">
                         <h3 className="uk-card-title">{elem.title}</h3>

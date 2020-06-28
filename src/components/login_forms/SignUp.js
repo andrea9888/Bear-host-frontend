@@ -40,13 +40,13 @@ class SignUp extends React.Component {
         this.props.setNotify("Lozinke se ne poklapaju!");
         return false;
       }
-      this.props.setNotify("Pogrešno unijeta lozinka!");
+      this.props.setNotify("Pogrešno unijeta lozinka! (veliko slovo, malo slovo, broj i znak)");
       return false;
       
     }
 
     handleEmail = (email) => {
-      if(email.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+      if(email.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
           return true;
       }
       this.props.setNotify("Pogrešno unijet email!");
@@ -103,7 +103,7 @@ class SignUp extends React.Component {
       }/*
       this.handleName(data.firstname) && this.handleLastName(data.lastname) && this.handleEmail(data.email) && this.handleUsername(data.username) && this.handlePass(data.password)
       */
-      if(true){
+      if(this.handleName(data.firstname) && this.handleLastName(data.lastname) && this.handleEmail(data.email) && this.handleUsername(data.username) && this.handlePass(data.password)){
         this.loginCall(data); 
       }
       
