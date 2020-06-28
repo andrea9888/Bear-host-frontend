@@ -21,7 +21,7 @@ class Enterprise extends Component {
                     <div className="flex">
                         <div className="flex-33">
                             <div className="enterprise">
-                                <img className="fas fa-gradient fa-left" src={sec1}/>
+                                <img className="fas fa-gradient fa-left" src={sec1} alt=""/>
                                 <h3>High <br/>Performance</h3>
                             </div>
                             <p>We operate one of the most advanced server networks in the world, complete with Anycast support and extensive DDoS protection.</p>
@@ -30,7 +30,7 @@ class Enterprise extends Component {
                         
                         <div className="flex-33">
                             <div className="enterprise">
-                                <img className="fas fa-gradient fa-left" src={sec3}/>
+                                <img className="fas fa-gradient fa-left" src={sec3} alt=""/>
                                 <h3>Secure <br/>Infrastructure</h3>
                             </div>
                                 <p>All datacenters are Tier certified and provide advanced fire and intrusion protection combined with enterprise hardware.</p>
@@ -38,7 +38,7 @@ class Enterprise extends Component {
                         </div>
                         <div className="flex-33">
                             <div className="enterprise">
-                                <img className="fas fa-gradient fa-left" src={sec2}/>
+                                <img className="fas fa-gradient fa-left" src={sec2} alt=""/>
                                 <h3>Fully <br/>Redundant</h3>
                             </div>
                             <p>Our cloud platform offers a 99.99% uptime guarantee with full hardware and network redundancy to keep your services online.</p>
@@ -52,7 +52,7 @@ class Enterprise extends Component {
                             <li className="pariz"><a href="network.html"><div className="map-label-top">Pariz <small>Francuska</small></div></a></li>
                             <li className="amsterdam"><a href="network.html"><div className="map-label-top">Amsterdam <small>Holandija</small></div></a></li>                           
                         </ul>
-                        <img width="1276" height="630" src={mapa}/>
+                        <img width="1276" height="630" src={mapa} alt=""/>
                             
                     </div>
                     <footer className="section-footer">

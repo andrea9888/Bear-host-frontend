@@ -5,13 +5,16 @@
 } */
  
 .section-footer-pro{
-    height: 300px;
+    height: fit-content;
 }
 
+.flex-pro{
+    padding: 0 27px;
+}
 
 .section-footer-pro>p{
-    padding: 70px 196px;
-    color: #174f8d;
+    padding: 70px;
+    color: black;
     text-align: center;
 }
 
@@ -44,6 +47,7 @@
 
 .container-background{
     padding-top: 150px;
+    padding-bottom: 63px;
 }
 
 .container-pro{
@@ -125,15 +129,19 @@
     width: 134px;
     background: linear-gradient(90deg, #f93, #fc3);
     color: white;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px){
-    
-.body-pro{
-    background-image: url('../slike/POZADINATELLOGIN.png');
-    background-size: 100vw 318px;
-    background-repeat: no-repeat;
-}
+    .flex-pro{
+        padding: 0 10px;
+    }
+        
+    .body-pro{
+        background-image: url('../slike/POZADINATELLOGIN.png');
+        background-size: 100vw 318px;
+        background-repeat: no-repeat;
+    }
 
     .logo-pro{
         width: 300px;
@@ -165,8 +173,12 @@
     }
         
     .section-footer-pro>p{
-        padding-top: 40px;
+        padding: 32px;
     }
+}
+
+.black{
+    color: black;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1100px) {

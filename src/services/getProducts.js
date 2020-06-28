@@ -1,4 +1,3 @@
-import React from "react";
 import apiCall from './apiCall.js';
 
 
@@ -17,7 +16,7 @@ class getProducts {
     }
 
     async getProductsObj(id){
-        if(this.state.elements[id].length > 0){
+        if(id !== null && this.state.elements[id].length > 0){
             return this.state.elements[id];
         }else{
             let elements = await apiCall.get(`/products/${id}`);
@@ -28,4 +27,4 @@ class getProducts {
 
 }
 
-export default new getProducts;
+export default new getProducts();

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Link } from "react-router-dom";
 import logo from '../slike/logo.svg';
 import Slider from './components-home/slider';
 import Marketing from './components-home/marketing';

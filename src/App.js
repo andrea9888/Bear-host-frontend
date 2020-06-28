@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import "./App.css";
 import "./AppResponsive.css";
 import { Home } from "./components/Home";
-import { Shop } from "./components/Shop";
+import  Shop from "./components/Shop";
 import Login from "./components/Login";
 import { PrivateRoute } from "./auth_and_private/ProtectedRoute.js";
 import  Vps  from "./components/Vps";
@@ -22,35 +22,34 @@ class App extends React.Component {
     logged: auth.getAuthStatus(),
     isMobile: window.innerWidth < 800,
     loginPage: "",
-    keepMeLoged: false,
     products: [],
     packets: {}
 
 
   };
 
-  keepMeLogedUpdate = (keepMeLoged) => {
-    this.setState({keepMeLoged})
-  }
+  
+
 
   toggleLog = (logged) => {
     this.setState({ logged });
     if (logged) {
       this.setState({ logged });
     } else {
-      auth.logout(this.state.keepMeLoged);
+      auth.logout(true);
     }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener("resize", () =>
       this.setState({
         isMobile: window.innerWidth < 800,
       })
     );
     if (this.state.products.length === 0){
-      this.readProducts();
-      this.readPackets();
+      await this.readPackets();
+      await this.readProducts();
+
     }
   }
 
@@ -65,7 +64,6 @@ class App extends React.Component {
     
       const response = await apiCall.get('/products/marketing');
       const products = response.data;
-      console.log(products);
       this.setState({products}) ;
     
   }
@@ -73,24 +71,25 @@ class App extends React.Component {
   async readPackets(){
     const response = await apiCall.get('/products/packets');
     var packets = {};
-    response.data.forEach(element => {
-        packets[element.packetname] = element.packetid;
-    });
+    
+    for(const element of response.data){
+      packets[element.packetname] = element.packetid;
+    }
     this.setState({ packets });
   }
 
   objectForProducts(id){
     var objToSend = {};
-    this.state.products.forEach(element => {
-        if(id === element.packetid){
-            objToSend.title = element.title;
-            objToSend.description1 = element.description1;
-            objToSend.minprice = element.minprice;
-            objToSend.pricedescription = element.pricedescription;
-            objToSend.packetid = element.packetid;
-            return objToSend;
-        }
-    });
+    for(const element of this.state.products){
+        if(id === element.id){
+          objToSend.title = element.title;
+          objToSend.description1 = element.description1;
+          objToSend.minprice = element.minprice;
+          objToSend.pricedescription = element.pricedescription;
+          objToSend.packetid = element.id;
+        return objToSend;
+      }
+    }
     return objToSend;
   }
 
@@ -127,7 +126,7 @@ class App extends React.Component {
                   <li className="list-mem"><Link to="/shop">Korpa</Link></li>
                   
                     <div className="login-button">
-                      {this.state.logged?<button className="uk-button uk-button-default login"><Link to="/login" className="white">Prijavi se</Link></button>:<button className="uk-button uk-button-default logout white" onClick={()=>this.toggleLog(false)}>Odjavi se</button>}
+                      {!this.state.logged?<button className="uk-button uk-button-default login"><Link to="/login" className="white">Prijavi se</Link></button>:<button className="uk-button uk-button-default logout white" onClick={()=>this.toggleLog(false)}>Odjavi se</button>}
                     </div>
                   
 
@@ -139,17 +138,19 @@ class App extends React.Component {
           <Switch>
             <Route exact path="(/|/home)" render={()=><Home products={this.state.products}></Home>}></Route>
             <Route path="/vps" render={()=><Vps products={this.objectForProducts(this.state.packets["VPS"])}></Vps>}></Route>
-            <Route path="/shared" render={()=><Shared products={this.objectForProducts(this.state.packets["Shared"])}></Shared>}></Route>
+            <Route path="/shared" render={()=><Shared products={this.objectForProducts(this.state.packets["Shared"]) }></Shared>}></Route>
             <Route path="/dedicated" render={()=><Dedicated products={this.objectForProducts(this.state.packets["Dedicated"])}></Dedicated>}></Route>
             <Route path="/mecloud" render={()=><MeCloud products={this.objectForProducts(this.state.packets["Cloud"])}></MeCloud>}></Route>
             <Route path="/company" component={Company}></Route>
             <Route path="/about" component={About}></Route>
             <Route
               path="/login"
-              render={() => <Login updateLogStatus={this.toggleLog} keepMeLogedUpdate={this.keepMeLogedUpdate} updatePageStatus={this.togglePageStatus}  hideBRouter={this.hideNav}></Login>}
+              render={() => <Login updateLogStatus={this.toggleLog} updatePageStatus={this.togglePageStatus}  hideBRouter={this.hideNav}></Login>}
             ></Route>
             <PrivateRoute component={Shop} path="/shop"></PrivateRoute>
             <Route path="/shop" component={Shop}></Route>
+            <Route path="*" render={()=><h1>404 Not Found</h1>}></Route>
+          
           </Switch>
         </BrowserRouter>
       </div>

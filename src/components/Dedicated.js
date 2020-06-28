@@ -2,16 +2,27 @@ import React from 'react';
 import  PackagePageHelper  from './PackagePageHelper.js';
  
 class Dedicated extends React.Component{
-  state={
+  constructor(props){
+    super(props);
+    this.state={
+      data: this.props.products
+    }
+  }
+
+
+  componentDidUpdate(){
+
+    if(this.props.products !== this.state.data){
+      this.setState({data: this.props.products})
+    }
   }
 
   render(){
     return(
 
-      <PackagePageHelper packageArgs={this.props.products}/>
+      <PackagePageHelper packageArgs={this.state.data}/>
       
     );
   }
 }
-
 export default Dedicated;
