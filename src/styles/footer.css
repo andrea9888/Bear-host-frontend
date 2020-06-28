@@ -56,13 +56,22 @@
 
 #footer{
     padding-top:50px;
-    background-color: #fff;
+    background-color: #242b63;
+}
+h4{
+	color:white;
 }
 .copyright{
-    color:black;
+    color:white;
     padding-top:30px;
-    padding-bottom: 30px;
+	padding-bottom: 30px;
+	margin:0;
 }
+.uk-icon-button {
+	background-color: #242b63;
+	color:white;
+}
+
 .flex {
 	display: flex;
 	margin-left: calc(var(--element-spacing) * -1);

@@ -49,6 +49,11 @@ h1{
 .slider{
     color:white;
 }
+.product-slider-desc{
+    
+    height:20vh;
+    
+}
 .carousel.carousel-slider .control-arrow{
     color:white;
 }
