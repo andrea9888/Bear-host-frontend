@@ -28,8 +28,8 @@ class App extends React.Component {
 
   };
 
-  componentWillUnmount(){
-    auth.logout();
+  async componentWillUnmount(){
+    await auth.logout();
   }
 
 
