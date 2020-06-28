@@ -28,7 +28,9 @@ class App extends React.Component {
 
   };
 
-  
+  componentWillUnmount(){
+    auth.logout();
+  }
 
 
   toggleLog = (logged) => {
@@ -67,6 +69,8 @@ class App extends React.Component {
       this.setState({products}) ;
     
   }
+
+
 
   async readPackets(){
     const response = await apiCall.get('/products/packets');
