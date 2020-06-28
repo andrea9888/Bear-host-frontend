@@ -5,6 +5,8 @@
     transform: translateX(-50%);
     width: 500px;
     height: 673px;
+
+    z-index: 6;
 }
 
 .modal::before{
