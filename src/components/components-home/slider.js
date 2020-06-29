@@ -35,7 +35,7 @@ class Slider extends Component {
             <div className='product' key={index}>
                         
                 <h1>{elem.title}</h1>
-                <p className="product-slider-desc">{elem.description1} <strong className="text-gradient">{`${elem.minprice}€`} per {elem.pricedescription}</strong></p>
+                <p className="product-slider-desc">{`${elem.description1} starting at just`} <strong className="text-gradient">{`${elem.minprice}€`} per {elem.pricedescription}</strong></p>
                 <img src={server} alt=""/>
                     
             </div>

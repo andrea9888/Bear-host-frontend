@@ -12,15 +12,28 @@ class Marketing extends Component {
     
     createAdd = () =>{
         return this.props.products.map((elem, index) =>{
-            var icon;
-            if (index===0) icon=icon1;
-            else if (index===1) icon=icon2;
-            else if (index===2) icon=icon3;
-            else icon=icon4;
+            var icon, cls;
+            if (index===0) {
+                icon=icon1 
+                cls="cls: uk-animation-slide-left;  delay: 900";
+            } 
+            else if (index===1) {
+                icon=icon2;
+                cls="cls: uk-animation-slide-top;  delay: 900";
+            }
+
+            else if (index===2) {
+                icon=icon3; 
+                cls="cls: uk-animation-slide-bottom;  delay: 900";
+            }
+            else {
+                icon=icon4;
+                cls="cls: uk-animation-slide-right;  delay: 900";
+            }
 
             return (
             <div className="container-marketing" key={index}>  
-                <img className="icon-marketing" src={icon} alt=""/>
+                <img className="icon-marketing" src={icon} alt="" uk-scrollspy={cls}/>
                 <div className="marketing-card">
                     <div className="uk-card uk-card-default uk-card-hover uk-card-body">
                         <h3 className="uk-card-title">{elem.title}</h3>
