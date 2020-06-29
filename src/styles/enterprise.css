@@ -126,6 +126,9 @@ h3, p{
     margin: -12px;
     
 }
+.mapa{
+	overflow: hidden;
+}
 .podgorica{
 	bottom: 19%;
     right: 48%;

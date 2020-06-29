@@ -13,8 +13,13 @@
     left: 55px;
 }
 
+
 .uk-offcanvas-bar {
     background-color: #0099cc;
+}
+.uk-navbar-nav>li:hover>a, .uk-navbar-nav>li>a.uk-open, .uk-navbar-nav>li>a:focus {
+    color: #0099cc;
+    outline: none;
 }
 
 .uk-navbar-container {

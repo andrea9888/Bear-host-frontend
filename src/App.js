@@ -16,6 +16,7 @@ import { auth } from "./auth_and_private/authService";
 import { Company } from "./components/Company";
 import Kontakt from './components/Contact';
 import apiCall from "./services/apiCall";
+import korpa from '../src/slike/KORPA.svg'
 
 class App extends React.Component {
   state = {
@@ -127,7 +128,7 @@ class App extends React.Component {
                   {this.state.isMobile?<PackagesTel pack={this.state.isMobile}></PackagesTel>:<PackagesDes pack={this.state.isMobile} ></PackagesDes>}
                   <li className="list-mem"><Link to="/company">Kompanija</Link></li>
                   <li className="list-mem"><Link to="/contact">Kontakt</Link></li>
-                  <li className="list-mem"><Link to="/shop">Korpa</Link></li>
+                  <li className="list-mem"><Link to="/shop"><span uk-icon="cart"></span></Link></li>
                   
                     <div className="login-button">
                       {!this.state.logged?<button className="uk-button uk-button-default login"><Link to="/login" className="white">Prijavi se</Link></button>:<button className="uk-button uk-button-default logout white" onClick={()=>this.toggleLog(false)}>Odjavi se</button>}

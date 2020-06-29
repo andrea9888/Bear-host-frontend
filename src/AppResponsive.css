@@ -8,7 +8,7 @@
     }
     .logout,
     .login {
-        left: 460px;
+        left: 400px;
         height: 50px;
         top: 37px;
     }
@@ -60,7 +60,7 @@
     }
     .logout,
     .login {
-        left: 600px;
+        left: 550px;
     }
 }
 
@@ -76,7 +76,7 @@
     }
     .logout,
     .login {
-        left: 850px;
+        left: 750px;
     }
 }
 
