@@ -70,9 +70,9 @@ class LoginClass extends React.Component {
         <p>NEMATE NALOG?</p>
         <button onClick={this.setModal}>REGISTRUJ SE</button>
       </div>
-      {this.state.modal?<div className="mask" onClick={this.setModal}></div>:""}
 
       {this.state.modal?<SignUp setModal={this.setModal} setNotify={this.setNotify}/>:""}
+      {this.state.modal?<div className="mask" onClick={this.setModal}></div>:""}
     
       {this.state.notify?this.showNotify():""}  
       </div>
