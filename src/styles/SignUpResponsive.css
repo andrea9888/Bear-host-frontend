@@ -8,6 +8,10 @@
         background-image: none;
         transform: none;
         border-radius: 10px;
+        animation: none;
+    }
+    .modal>*{
+        animation: none;
     }
 
     .modal{

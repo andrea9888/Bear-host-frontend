@@ -5,9 +5,18 @@
     transform: translateX(-50%);
     width: 500px;
     height: 673px;
-
     z-index: 6;
 }
+
+.modal>*{
+    animation: fade ease .4s;
+}
+ @keyframes fade{
+    0% {opacity:0;}
+    80% {opacity:0;}
+    100% {opacity:1;}
+ }
+
 
 .modal::before{
     content: "";
@@ -15,12 +24,26 @@
     width: 100%;
     height: 100%;
     top: 0;
-    left: 0;
     z-index: -1;
     background-image: url("../slike/login-form-background.png");
     background-repeat: no-repeat;
     background-size: cover;
     transform: rotate(90deg);
+    animation: slide .3s;
+    
+}
+@keyframes slide {
+    0% {left: -50vw; transform:rotate(90deg);} 
+    10% {left: -45vw; transform:rotate(126deg)} 
+    20% {left: -40vw; transform:rotate(152deg)}
+    30% {left: -35vw; transform:rotate(188deg)}
+    40% { left: -30vw; transform:rotate(224deg)} 
+    50% { left: -25vw; transform:rotate(260deg)} 
+    60% { left: -20vw; transform:rotate(296deg)} 
+    70% { left: -15vw; transform:rotate(346deg)} 
+    80% { left: -10vw; transform:rotate(382deg)} 
+    90% { left: -5vw; transform:rotate(418deg)} 
+    100% {left: 0; transform:rotate(454deg)}
 }
 
 .sign-up{
@@ -52,6 +75,8 @@
 
 .input-shape-sign-up{
     margin-top: 1vw;
+    border: none;
+    box-shadow: 0 0 20px 1px rgb(0, 120, 180);
 }
 
 .sign-up-section-2{
@@ -66,6 +91,7 @@
     border: 1px solid black;
     border-radius: 21px;
     font-size: 17px;
+    line-height: 38px;
 }
 
 .signup-btns{
