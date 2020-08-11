@@ -7,9 +7,10 @@ class Komentari extends Component {
      }
      async componentDidMount(){
         const response = await apiCall.get('/comments');
+        if(response){
         const comments = response.data;
         this.setState({comments}) ;
-        
+        }
      }
     displayComments = ()=>{
         let komentari = this.state.comments.slice(0,3);

@@ -16,7 +16,7 @@ import { auth } from "./auth_and_private/authService";
 import { Company } from "./components/Company";
 import Kontakt from './components/Contact';
 import apiCall from "./services/apiCall";
-import korpa from '../src/slike/KORPA.svg'
+import getCartProducts from './services/getCartProducts.js';
 
 class App extends React.Component {
   state = {
@@ -24,13 +24,17 @@ class App extends React.Component {
     isMobile: window.innerWidth < 800,
     loginPage: "",
     products: [],
-    packets: {}
-
+    packets: {},
+    cartLen: 0
 
   };
 
-  async componentWillUnmount(){
-    await auth.logout();
+  // async componentWillUnmount(){
+  //   await auth.logout();
+  // }
+
+  setCartLenTrigger = (message) => {
+    this.setState( {cartLen: message} );
   }
 
 
@@ -52,12 +56,22 @@ class App extends React.Component {
     if (this.state.products.length === 0){
       await this.readPackets();
       await this.readProducts();
-
     }
+    if(this.state.logged){
+      const cartLen = await getCartProducts.cartLen()
+      this.setState({ cartLen });
+  }
   }
 
   hideNav = () =>{
     this.setState({loginPage: "hidden"})
+  }
+
+  async componentDidUpdate(){
+    if(this.state.cartLen === "default"){
+      const cartLen = await getCartProducts.cartLen();
+      this.setState({cartLen});
+    }
   }
 
   togglePageStatus = () => {
@@ -66,9 +80,10 @@ class App extends React.Component {
   async readProducts() {
     
       const response = await apiCall.get('/products/marketing');
+      if(response){
       const products = response.data;
       this.setState({products}) ;
-    
+    }
   }
 
 
@@ -76,11 +91,11 @@ class App extends React.Component {
   async readPackets(){
     const response = await apiCall.get('/products/packets');
     var packets = {};
-    
+    if(response){
     for(const element of response.data){
       packets[element.packetname] = element.packetid;
     }
-    this.setState({ packets });
+    this.setState({ packets });}
   }
 
   objectForProducts(id){
@@ -128,7 +143,7 @@ class App extends React.Component {
                   {this.state.isMobile?<PackagesTel pack={this.state.isMobile}></PackagesTel>:<PackagesDes pack={this.state.isMobile} ></PackagesDes>}
                   <li className="list-mem"><Link to="/company">Kompanija</Link></li>
                   <li className="list-mem"><Link to="/contact">Kontakt</Link></li>
-                  <li className="list-mem"><Link to="/shop"><span uk-icon="cart"></span></Link></li>
+    <li className="list-mem"><Link to="/shop" className="cart-icon-li"><span uk-icon="cart"></span> {this.state.logged?<span className="cart-len">{this.state.cartLen}</span>:""}</Link></li>
                   
                     <div className="login-button">
                       {!this.state.logged?<button className="uk-button uk-button-default login"><Link to="/login" className="white">Prijavi se</Link></button>:<button className="uk-button uk-button-default logout white" onClick={()=>this.toggleLog(false)}>Odjavi se</button>}
@@ -142,19 +157,20 @@ class App extends React.Component {
     </nav> 
           <Switch>
             <Route exact path="(/|/home)" render={()=><Home products={this.state.products}></Home>}></Route>
-            <Route path="/vps" render={()=><Vps products={this.objectForProducts(this.state.packets["VPS"])}></Vps>}></Route>
-            <Route path="/shared" render={()=><Shared products={this.objectForProducts(this.state.packets["Shared"]) }></Shared>}></Route>
-            <Route path="/dedicated" render={()=><Dedicated products={this.objectForProducts(this.state.packets["Dedicated"])}></Dedicated>}></Route>
-            <Route path="/mecloud" render={()=><MeCloud products={this.objectForProducts(this.state.packets["Cloud"])}></MeCloud>}></Route>
+            <Route path="/vps" render={()=><Vps products={this.objectForProducts(this.state.packets["VPS"])} appTrigger={this.setCartLenTrigger}></Vps>}></Route>
+            <Route path="/shared" render={()=><Shared products={this.objectForProducts(this.state.packets["Shared"]) } appTrigger={this.setCartLenTrigger}></Shared>}></Route>
+            <Route path="/dedicated" render={()=><Dedicated products={this.objectForProducts(this.state.packets["Dedicated"])} appTrigger={this.setCartLenTrigger}></Dedicated>} ></Route>
+            <Route path="/mecloud" render={()=><MeCloud products={this.objectForProducts(this.state.packets["Cloud"]) } appTrigger={this.setCartLenTrigger}></MeCloud>}></Route>
             <Route path="/company" component={Company}></Route>
             <Route path="/contact" component={Kontakt}></Route>
+            <Route path="/setings/" component={Kontakt}></Route>
             <Route
               path="/login"
               render={() => <Login updateLogStatus={this.toggleLog} updatePageStatus={this.togglePageStatus}  hideBRouter={this.hideNav}></Login>}
             ></Route>
-            <PrivateRoute component={Shop} path="/shop"></PrivateRoute>
+            <PrivateRoute component={Shop} appTrigger={this.setCartLenTrigger}  path="/shop" ></PrivateRoute>
             <Route path="/shop" component={Shop}></Route>
-            <Route path="*" render={()=><h1>404 Not Found</h1>}></Route>
+            <Route path="*" render={()=><h1 style={{color:"black"}}>NOT FOUND!!!</h1>}></Route>
           
           </Switch>
         </BrowserRouter>

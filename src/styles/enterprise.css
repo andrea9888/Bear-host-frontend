@@ -62,7 +62,8 @@ section .section-header p {
 }
 
 .enterprise{
-    display:flex;
+	display:flex;
+	justify-content: center;
 }
 .fa-left{
     width:calc(5*var(--font-size-body));

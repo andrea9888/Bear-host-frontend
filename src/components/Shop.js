@@ -11,7 +11,9 @@ import '../styles/Shop.css';
 
 class Shop extends React.Component{
   _isMounted = false;
-  state={
+  constructor(props){
+    super(props);
+  this.state={
       gridTemplate: "section-secondary-usual-grid",
       cards: [],
       triger: 'triger',
@@ -19,7 +21,12 @@ class Shop extends React.Component{
       modal: false
     }
 
+  }
+  
     
+    appTrigger = (message) =>{
+      this.props.appTrigger(message)
+    }
 
     setNotify = (message) => {
       if(this._isMounted){
@@ -65,10 +72,11 @@ class Shop extends React.Component{
     async componentDidUpdate(prevProps, prevState){
       if(prevState.triger !== this.state.triger){
         await this.listProducts();
+        this.appTrigger("default");
       }
 
       if(this.state.notify){
-         setTimeout(() => {if(this._isMounted) this.setState({notify: false})},3000);
+         setTimeout(() => {if(this._isMounted) this.setState({notify: false})},1000);
         } 
 
         
@@ -92,7 +100,7 @@ class Shop extends React.Component{
 			<div className="container container-background">
 				<header className="section-header">
 					<h1>KORPA</h1>
-					<p>Vaši omiljeni proizvodi na jednom mjestu!</p>
+					<p> Vaši omiljeni proizvodi na jednom mjestu! </p>
 				</header>
 			</div>
 

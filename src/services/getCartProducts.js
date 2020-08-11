@@ -7,6 +7,7 @@ class getCartProducts {
     state={
         cart: [],
         force: false
+
     }
 
     setCart(cart){
@@ -17,13 +18,16 @@ class getCartProducts {
         this.state.force = bool;
     }
 
-    async getCartProductsObj(){
-        if(this.state.cart.length > 0 && this.state.force){
+
+
+    getCartProductsObj = async () => {
+        if(this.state.force){
             return this.state.cart;
         }else{
+            console.log("getCartProducts")
             try{
                 const cart = await apiCall.get(`/cart`);
-                this.setCart(cart.data.carts);
+                if(cart.status === 200) this.setCart(cart.data.carts);
             }catch (error) {
                 //pass
             }
@@ -31,6 +35,21 @@ class getCartProducts {
             return this.state.cart;
         }
     }
+
+    cartLen = async () => {
+        if(!this.state.force){
+            try{
+                const cart = await apiCall.get(`/cart`);
+                if(cart.status === 200) this.setCart(cart.data.carts);
+            }catch (error) {
+                //pass
+            }
+            this.setForce(true);
+        }
+        console.log(this.state.cart)
+        return this.state.cart.length;
+    }
+
 
 }
 

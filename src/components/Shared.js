@@ -20,7 +20,7 @@ class Shared extends React.Component{
   render(){
     return(
 
-      <PackagePageHelper packageArgs={this.state.data}/>
+      <PackagePageHelper packageArgs={this.state.data} appTrigger={this.props.appTrigger}/>
       
     );
   }
