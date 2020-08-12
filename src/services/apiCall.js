@@ -16,7 +16,7 @@ instance.interceptors.response.use(
   async function (error) {
       
     const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       const req = await instance
@@ -34,8 +34,10 @@ instance.interceptors.response.use(
 
             const req = await axios(originalRequest);
             return req;
-          } else {
-            auth.logout(true);
+          } else if(res.status === 403) {
+            console.log("oreq - ", originalRequest);
+            localStorage.removeItem("bear-host-refresh");
+            localStorage.removeItem("bear-host-logged");
           }
         }, rej => {
             window.location.href="/login";

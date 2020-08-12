@@ -2,12 +2,13 @@ import React from 'react';
 import apiCall from './apiCall.js';
 import getCartProducts from '../services/getCartProducts.js';
 
-async function addToCart(id, notifyFunc){
+async function addToCart(id, notifyFunc, appTriger){
     let res = await apiCall.put("/cart", {
         "productid": id});
         getCartProducts.setForce(false);
         if(res.status === 200){
             notifyFunc("Uspješno sačuvano!")
+            appTriger("default");
         }else if(res.status === 400){
             notifyFunc("Proizvod već postoji u vašoj korpi!")
         }else{
@@ -25,7 +26,7 @@ async function deleteFromCart(id, notifyFunc){
     getCartProducts.setForce(false);
 
 }
-export default function listCards(obj, parent, trigerFunc, notifyFunc){
+export default function listCards(obj, parent, trigerFunc, notifyFunc, appTriger){
 
     return obj.map((elem, index) =>{
         let priceType = elem.pricedescription;
@@ -86,7 +87,7 @@ export default function listCards(obj, parent, trigerFunc, notifyFunc){
                             <div className="hr-pro hr-pro-bottom"></div>
                         </div>
                         {parent==="products"?<button className="to-cart-btn" onClick={() => {
-                            addToCart(elem.id, notifyFunc)
+                            addToCart(elem.id, notifyFunc, appTriger)
                         }}>Dodaj u korpu</button>:<button className="to-cart-btn delete-product" id={elem.productid} onClick={async (e) => {
                             const id = e.target.id;
                             await deleteFromCart(id, notifyFunc);

@@ -30,6 +30,9 @@ class PackagePageHelper extends React.Component{
         }
     }
 
+    appTrigger = (message) =>{
+        this.props.appTrigger(message)
+      }
    
   async listProducts(){
     if(this._isMounted){
@@ -65,7 +68,7 @@ class PackagePageHelper extends React.Component{
     }
 
     if(this.state.notify){
-        setTimeout(() => {if(this._isMounted) this.setState({notify: false})},3000);
+        setTimeout(() => {if(this._isMounted) this.setState({notify: false})},1000);
     }
   }
 
@@ -110,7 +113,7 @@ class PackagePageHelper extends React.Component{
 		</section>
         <section className={`section-secondary-pro ${this.state.gridTemplate}`}>
 			
-            {listCards(this.state.cards, "products", this.emptyCallback, this.setNotify)}
+            {listCards(this.state.cards, "products", this.emptyCallback, this.setNotify, this.appTrigger)}
 
 
             
@@ -124,7 +127,7 @@ class PackagePageHelper extends React.Component{
                         <div className="flex-33">
                             <div className="enterprise">
                                 <img className="fas fa-gradient fa-left" src={sec1} alt=""/>
-                                <h3>High <br/>Performance</h3>
+                                <h3 className="pcg-h3">High <br/>Performance</h3>
                             </div>
                             <p className="black">We operate one of the most advanced server networks in the world, complete with Anycast support and extensive DDoS protection.</p>
                             
@@ -133,7 +136,7 @@ class PackagePageHelper extends React.Component{
                         <div className="flex-33">
                             <div className="enterprise">
                                 <img className="fas fa-gradient fa-left" src={sec3} alt=""/>
-                                <h3>Secure <br/>Infrastructure</h3>
+                                <h3 className="pcg-h3">Secure <br/>Infrastructure</h3>
                             </div>
                                 <p className="black">All datacenters are Tier certified and provide advanced fire and intrusion protection combined with enterprise hardware.</p>
 
@@ -141,7 +144,7 @@ class PackagePageHelper extends React.Component{
                         <div className="flex-33">
                             <div className="enterprise">
                                 <img className="fas fa-gradient fa-left" src={sec2} alt=""/>
-                                <h3>Fully <br/>Redundant</h3>
+                                <h3 className="pcg-h3">Fully <br/>Redundant</h3>
                             </div>
                             <p className="black">Our cloud platform offers a 99.99% uptime guarantee with full hardware and network redundancy to keep your services online.</p>
                             
@@ -152,7 +155,7 @@ class PackagePageHelper extends React.Component{
                         <div className="flex-33">
                             <div className="enterprise">
                                 <img className="fas fa-gradient fa-left" src={sec4} alt=""/>
-                                <h3>High <br/>Performance</h3>
+                                <h3 className="pcg-h3">High <br/>Performance</h3>
                             </div>
                             <p className="black">We operate one of the most advanced server networks in the world, complete with Anycast support and extensive DDoS protection.</p>
                             
@@ -161,7 +164,7 @@ class PackagePageHelper extends React.Component{
                         <div className="flex-33">
                             <div className="enterprise">
                                 <img className="fas fa-gradient fa-left" src={sec5} alt=""/>
-                                <h3>Secure <br/>Infrastructure</h3>
+                                <h3 className="pcg-h3">Secure <br/>Infrastructure</h3>
                             </div>
                                 <p className="black">All datacenters are Tier certified and provide advanced fire and intrusion protection combined with enterprise hardware.</p>
 
@@ -169,7 +172,7 @@ class PackagePageHelper extends React.Component{
                         <div className="flex-33">
                             <div className="enterprise">
                                 <img className="fas fa-gradient fa-left" src={sec6} alt=""/>
-                                <h3>Fully <br/>Redundant</h3>
+                                <h3 className="pcg-h3">Fully <br/>Redundant</h3>
                             </div>
                             <p className="black">Our cloud platform offers a 99.99% uptime guarantee with full hardware and network redundancy to keep your services online.</p>
                             

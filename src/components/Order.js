@@ -66,27 +66,27 @@ class Order extends React.Component {
                 let price1, price2, price3 = "";
                 let radio1, radio2, radio3 = "";
                 if(elem.price3 != null){
-                    price1 = <>
+                    price1 = <label htmlFor={`${elem.productid}One`}>
                         <strong>1god </strong>
                         <span className="price-modal">{elem.price1}&euro;/g</span><br/>
-                    </>
-                    radio1 = <input type="radio" name={elem.productid} value="1" checked={this.state.dataToSend[elem.productid][0][1]} onChange={(e) => this.changeData(e.target.name, 1)}/>
+                    </label>
+                    radio1 = <input type="radio" id={`${elem.productid}One`} name={elem.productid} value="1" checked={this.state.dataToSend[elem.productid][0][1]} onChange={(e) => this.changeData(e.target.name, 1)}/>
 
                 }
                 if(elem.price2 != null){
-                    price2 = <>
+                    price2 = <label htmlFor={`${elem.productid}Two`}>
                         <strong>2god </strong>
                         <span className="price-modal">{elem.price2}&euro;/g</span><br/>
     
-                    </>
-                     radio2 = <input type="radio" name={elem.productid} value="2" onChange={(e) => this.changeData(e.target.name, 2)} checked={this.state.dataToSend[elem.productid][0][2]}/>
+                    </label>
+                     radio2 = <input type="radio" id={`${elem.productid}Two`} name={elem.productid} value="2" onChange={(e) => this.changeData(e.target.name, 2)} checked={this.state.dataToSend[elem.productid][0][2]}/>
 }
                 if(elem.price1 != null){
-                    price3 = <>
+                    price3 = <label htmlFor={`${elem.productid}Three`}>
                         <strong>3god </strong>
                         <span className="price-modal">{elem.price3}&euro;/g</span><br/>
-                    </>
-                    radio3 = <input type="radio" name={elem.productid} value="3" onChange={(e) => this.changeData(e.target.name, 3)} checked={this.state.dataToSend[elem.productid][0][3]}/>
+                    </label>
+                    radio3 = <input type="radio" id={`${elem.productid}Three`} name={elem.productid} value="3" onChange={(e) => this.changeData(e.target.name, 3)} checked={this.state.dataToSend[elem.productid][0][3]}/>
                 }
 
                 priceHolder =   <p className="price-modal">     

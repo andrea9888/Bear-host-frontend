@@ -8,7 +8,7 @@ class MeCloud extends React.Component{
   render(){
     return(
 
-      <PackagePageHelper packageArgs={this.props.products}/>
+      <PackagePageHelper packageArgs={this.props.products} appTrigger={this.props.appTrigger}/>
       
     );
   }

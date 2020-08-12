@@ -46,6 +46,8 @@
     .uk-navbar-container:not(.uk-navbar-transparent) {
         right: 250px;
     }
+
+    
 }
 
 @media only screen and (min-width: 1000px) {
@@ -83,5 +85,12 @@
 @media screen and (max-width: 280px) {
     .uk-icon>* {
         color: black;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .cart-len{
+        top: -8px;
+        right: -15px;
     }
 }
